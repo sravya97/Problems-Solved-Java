@@ -1,16 +1,16 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        
-        // O(n) Time and O(n) extra space for map
         Map<Integer, Integer> map = new HashMap<>();
+        int[] result = new int[2];
         for(int i=0;i<nums.length;i++){
-            int remaining = target - nums[i];
-            if(map.containsKey(remaining)){
-                return new int[] { map.get(remaining), i };
+            if(map.containsKey(target-nums[i])){
+                result[0] = i;
+                result[1] = map.get(target-nums[i]);
+                return result;
             } else {
                 map.put(nums[i], i);
             }
         }
-        return null;
+        return result;
     }
 }
