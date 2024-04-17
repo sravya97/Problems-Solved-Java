@@ -1,22 +1,19 @@
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        return binary(nums, 0, nums.length-1, target);
-    }
-
-    public int binary(int[] nums, int start, int end, int target){
-        if(start <= end){
-            int mid = start + (end - start)/2;
-            if(nums[mid] == target){
+        int first = 0;
+        int last = nums.length-1;
+        while(first<=last){
+            int mid = first + (last - first)/2;
+            if(nums[mid]== target){
                 return mid;
-                }
-            else if(nums[mid] < target){
-                return binary(nums, mid+1, end, target);
+            } else if(nums[mid]<target){
+                first = mid+1;
             } else {
-                return binary(nums, start, mid-1, target);
-            }
-        } 
-        else {
-            return start;
+                last = mid-1;
+            } 
         }
+        return first;
     }
+    
+    
 }
